@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: payment-orchestrator
+  threads:
+    virtual:
+      enabled: true          # Tomcat and @Scheduled run on virtual threads
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payments
+    username: payments
+    password: payments
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none         # schema is owned by Flyway
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+outbox:
+  poll-interval-ms: 1000
